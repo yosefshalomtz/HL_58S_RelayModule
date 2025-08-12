@@ -16,6 +16,7 @@ HL_58S_RelayModule8Channel::HL_58S_RelayModule8Channel()
         gpio_config(&io_conf);
         gpio_set_level(static_cast<gpio_num_t>(gpio_outputs[index]), 1);
     }
+    this->relay_status = 0x00; // all relays off by default
 }
 
 HL_58S_RelayModule8Channel &HL_58S_RelayModule8Channel::getInstance()
@@ -30,6 +31,7 @@ void HL_58S_RelayModule8Channel::on(int channel)
     if (channel < 1 || channel > 8)
         return;
     gpio_set_level(static_cast<gpio_num_t>(gpio_outputs[channel - 1]), 0);
+    relay_status |= (1 << (channel - 1)); // update relay status
 }
 
 void HL_58S_RelayModule8Channel::off(int channel)
@@ -37,13 +39,14 @@ void HL_58S_RelayModule8Channel::off(int channel)
     if (channel < 1 || channel > 8)
         return;
     gpio_set_level(static_cast<gpio_num_t>(gpio_outputs[channel - 1]), 1);
+    relay_status &= ~(1 << (channel - 1)); // clear the bit
 }
 
 bool HL_58S_RelayModule8Channel::status(int channel)
 {
     if (channel < 1 || channel > 8)
         return false;
-    return gpio_get_level(static_cast<gpio_num_t>(gpio_outputs[channel - 1])) == 0;
+    return (relay_status & (1 << (channel - 1))) != 0;
 }
 
 void HL_58S_RelayModule8Channel::allOn()

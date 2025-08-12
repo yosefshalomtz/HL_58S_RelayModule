@@ -37,6 +37,7 @@ class HL_58S_RelayModule8Channel
 private:
     static constexpr int gpio_outputs[] = {23, 22, 21, 19, 18, 17, 16, 4};
     HL_58S_RelayModule8Channel();
+    uint8_t relay_status;
 
 public:
     static HL_58S_RelayModule8Channel &getInstance();
