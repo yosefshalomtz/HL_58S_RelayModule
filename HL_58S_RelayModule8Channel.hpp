@@ -51,6 +51,8 @@ public:
 
     bool status(int channel);
 
+    uint8_t getRelayStatus() const;
+
     void allOn();
 
     void allOff();

@@ -49,6 +49,11 @@ bool HL_58S_RelayModule8Channel::status(int channel)
     return (relay_status & (1 << (channel - 1))) != 0;
 }
 
+uint8_t HL_58S_RelayModule8Channel::getRelayStatus() const
+{
+    return relay_status;
+}
+
 void HL_58S_RelayModule8Channel::allOn()
 {
     for (int i = 1; i < 9; i++)
