@@ -24,7 +24,7 @@
  *   - Call `getInstance()` to obtain the singleton instance.
  *   - Use `on()`, `off()`, and `status()` to control individual channels.
  *
- * Found a bug or have a suggestion? Contact me: yosefshalomtz@gmail.com
+ * Found a bug or have a suggestion? fill free to open issue
  * Author: Yosef Shalom Tzuberi
  * License: MIT
  * Have fun!
